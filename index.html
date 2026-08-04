@@ -161,7 +161,7 @@
             outline: none;
         }
 
-        /*
+        
         /* Bigger, brighter, and raised when hovered or focused/selected */
         .btn-order:hover, 
         .btn-order:focus, 
@@ -175,23 +175,7 @@
         .btn-order:active {
             transform: scale(1.02); /* Slight depress feedback on click */
         }
-        */
-
-        /* Replace the existing hover/focus rules with this */
-        .btn-order:hover, 
-        .btn-order.clicked {
-            transform: scale(1.08);
-            background-color: var(--hover-orange);
-            box-shadow: 0 6px 15px rgba(230, 81, 0, 0.4);
-            letter-spacing: 1px;
-        }
-
-        .btn-order-banner:hover,
-        .btn-order-banner.clicked {
-            transform: scale(1.12);
-            background-color: #ff6d00;
-            box-shadow: 0 0 15px rgba(255, 179, 0, 0.6);
-        }
+        
 
         /* Banner Section at Bottom */
         .starters-banner {
@@ -551,19 +535,5 @@
         </footer>
     </div>
 
-    <script>
-    document.querySelectorAll('.btn-order, .btn-order-banner').forEach(button => {
-        button.addEventListener('click', function() {
-            // Immediately apply active state and remove focus focus-lock
-            this.classList.add('clicked');
-            this.blur();
-
-            // Hold for 500ms (half a second) before resetting
-            setTimeout(() => {
-                this.classList.remove('clicked');
-            }, 500);
-        });
-    });
-</script>
 </body>
 </html>
