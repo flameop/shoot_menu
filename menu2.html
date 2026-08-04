@@ -270,15 +270,21 @@
         /* Responsive Breakpoint for Mobile */
         @media (max-width: 768px) {
             .menu-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr); /* Changed from 1fr to 2 columns */
             }
             .banner-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr); /* Changed from 1fr to 2 columns */
             }
             .bottom-bar {
                 flex-direction: column;
-                gap: 10px;
+                gap: 4px;
                 text-align: center;
+            }
+            .food-title {
+            font-size: 0.85rem; /* Makes the title fit better side-by-side */
+            }
+            .food-desc {
+                display: none; /* Optional: Hides the description on mobile to save space */
             }
         }
     </style>
