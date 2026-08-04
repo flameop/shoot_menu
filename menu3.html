@@ -159,21 +159,24 @@
             /* Smooth animations when interacted with */
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             outline: none;
-            -webkit-tap-highlight-color: transparent; /* Prevents default iOS tap flash */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Bigger, brighter, and raised when hovered or focused/selected */
-        .btn-order:hover, 
-        .btn-order:focus, 
+        /* Touch interaction (Active state for all devices) */
         .btn-order:active {
-            transform: scale(1.08); /* Makes button 8% larger */
+            transform: scale(1.02); /* Slight depress feedback on tap */
             background-color: var(--hover-orange);
-            box-shadow: 0 6px 15px rgba(230, 81, 0, 0.4); /* Glow effect */
-            letter-spacing: 1px;
         }
 
-        .btn-order:active {
-            transform: scale(1.02); /* Slight depress feedback on click */
+        /* Hover effect ONLY applies to devices with a mouse/pointer */
+        @media (hover: hover) {
+            .btn-order:hover, 
+            .btn-order:focus {
+                transform: scale(1.08); /* Makes button 8% larger */
+                background-color: var(--hover-orange);
+                box-shadow: 0 6px 15px rgba(230, 81, 0, 0.4); /* Glow effect */
+                letter-spacing: 1px;
+            }
         }
 
         /* Banner Section at Bottom */
@@ -259,14 +262,23 @@
             cursor: pointer;
             text-transform: uppercase;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            -webkit-tap-highlight-color: transparent; /* Prevents default iOS tap flash */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-order-banner:hover,
-        .btn-order-banner:focus {
-            transform: scale(1.12); /* Grows slightly more for footer highlight */
+        /* Touch interaction for bottom button */
+        .btn-order-banner:active {
+            transform: scale(1.05);
             background-color: #ff6d00;
-            box-shadow: 0 0 15px rgba(255, 179, 0, 0.6);
+        }
+
+        /* Hover effect ONLY applies to devices with a mouse/pointer */
+        @media (hover: hover) {
+            .btn-order-banner:hover,
+            .btn-order-banner:focus {
+                transform: scale(1.12); /* Grows slightly more for footer highlight */
+                background-color: #ff6d00;
+                box-shadow: 0 0 15px rgba(255, 179, 0, 0.6);
+            }
         }
 
         /* Responsive Breakpoint for Mobile */
@@ -285,7 +297,8 @@
         }
     </style>
 </head>
-<body>
+<!-- Added ontouchstart to the body to force iOS Safari to recognize the :active pseudo-class immediately -->
+<body ontouchstart="">
 
     <div class="menu-container">
         <!-- Header -->
@@ -534,17 +547,4 @@
             <button class="btn-order-banner">Add to Order</button>
         </footer>
     </div>
-
-    <!-- Script to fix sticky active state on touch devices -->
-    <script>
-        document.querySelectorAll('.btn-order, .btn-order-banner').forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove focus state after a 200ms delay to allow the animation to play,
-                // fixing the issue where buttons remain highlighted on iOS.
-                setTimeout(() => {
-                    this.blur();
-                }, 200);
-            });
-        });
-    </script>
 </body></html>
